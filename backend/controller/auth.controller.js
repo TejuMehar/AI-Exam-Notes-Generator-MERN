@@ -7,7 +7,7 @@ export const googleAuth = async (req, res) => {
     let user = await User.findOne({ email });
 
     if (!user) {
-      user = User.create({ name, email });
+      user = await User.create({ name, email });
     }
     const token = generateToken(user._id);
     res.cookie("token", token, {

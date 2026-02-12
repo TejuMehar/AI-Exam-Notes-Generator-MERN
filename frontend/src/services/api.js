@@ -1,9 +1,9 @@
 import axios from "axios";
-import { serverUrl } from "../App";
+import { serverUrl } from "../App.jsx";
 
-const getCurrentUser = async (req, res) => {
+export const getCurrentUser = async () => {
   try {
-    const result = await axios.get(serverUrl + "/api/user/currentuser", {
+    const result = await axios.get(`${serverUrl}/api/user/currentuser`, {
       withCredentials: true,
     });
     console.log("Current User:", result.data);
@@ -11,5 +11,3 @@ const getCurrentUser = async (req, res) => {
     console.error("Error fetching current user:", error);
   }
 };
-
-export default getCurrentUser;

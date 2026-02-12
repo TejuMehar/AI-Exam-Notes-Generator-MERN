@@ -14,10 +14,11 @@ function Auth() {
       const User = response.user;
       const name = User.displayName;
       const email = User.email;
-      const result = await axios.post(serverUrl + "/api/auth/google", {
-        name,
-        email,
-      });
+      const result = await axios.post(
+        serverUrl + "/api/auth/google",
+        { name, email },
+        { withCredentials: true },
+      );
       console.log("Google Auth Success:", result.data);
     } catch (error) {
       console.error("Google Sign-In Error:", error);

@@ -2,7 +2,7 @@ import jwt from "jsonwebtoken";
 
 const isAuth = async (req, res, next) => {
   try {
-    let token = req.cookies;
+    let { token } = req.cookies;
     if (!token) {
       return res.status(401).json({ message: "Token is Not found" });
     }
@@ -12,7 +12,9 @@ const isAuth = async (req, res, next) => {
     }
     req.userId = verifyToken.userId;
     next();
-  } catch (error) {}
+  } catch (error) {
+    return res.status(500).json({ message: `isAutg Error ${error}` });
+  }
 };
 
 export default isAuth;
