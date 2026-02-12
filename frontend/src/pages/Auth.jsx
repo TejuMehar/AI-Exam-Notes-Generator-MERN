@@ -4,9 +4,12 @@ import { signInWithPopup } from "firebase/auth";
 import { auth, provider } from "../utils/firebase";
 import axios from "axios";
 import { serverUrl } from "../App";
+import { useDispatch } from "react-redux";
+import { setUser } from "../redux/userSlice";
 
 function Auth() {
   const [hoveredCard, setHoveredCard] = useState(null);
+  const dispatch = useDispatch();
 
   const handleGoogleAuth = async () => {
     try {
@@ -19,6 +22,7 @@ function Auth() {
         { name, email },
         { withCredentials: true },
       );
+      dispatch(setUser(result.data));
       console.log("Google Auth Success:", result.data);
     } catch (error) {
       console.error("Google Sign-In Error:", error);

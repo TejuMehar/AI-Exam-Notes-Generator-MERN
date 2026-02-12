@@ -1,13 +1,10 @@
 import axios from "axios";
 import { serverUrl } from "../App.jsx";
 
+// Fetches the current user from the backend and returns the user data.
 export const getCurrentUser = async () => {
-  try {
-    const result = await axios.get(`${serverUrl}/api/user/currentuser`, {
-      withCredentials: true,
-    });
-    console.log("Current User:", result.data);
-  } catch (error) {
-    console.error("Error fetching current user:", error);
-  }
+  const result = await axios.get(`${serverUrl}/api/user/currentuser`, {
+    withCredentials: true,
+  });
+  return result.data;
 };
